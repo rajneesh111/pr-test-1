@@ -9,5 +9,6 @@ jobs:
     - name: Merge
       uses: KeisukeYamashita/auto-pull-request-merge@v1
       with:
+        token: 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
         intervalSeconds: 10
         timeoutSeconds: 30
