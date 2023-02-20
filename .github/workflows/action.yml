@@ -1,15 +1,17 @@
-name: Auto-Merge
+
+name: auto generate new pr from latest merge
 on:
-  pull_request_target:
+  pull_request:
     branches: ["main"]
-
 jobs:
-  enable-auto-merge:
+  auto-merge:
     runs-on: ubuntu-latest
-
-    # Specifically check that dependabot (or another trusted party) created this pull-request, and that it has been labelled correctly.
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
-    - uses: alexwilson/enable-github-automerge-action@main
+    - name: Merge
+      uses: KeisukeYamashita/auto-pull-request-merge@v1
       with:
-        github-token: "${{ secrets.ACCESS_KEY }}"
+        strategy: merge
+        token: ${{ secrets.ACCESS_KEY }}
+        intervalSeconds: 10
+        timeoutSeconds: 30
+
