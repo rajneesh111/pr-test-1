@@ -1,17 +1,18 @@
 
 name: auto generate new pr from latest merge
 on:
-  pull_request:
-    branches: ["main"]
+  pull_request_target:
+    types:
+      - closed
 jobs:
-  auto-merge:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - name: Merge
-      uses: KeisukeYamashita/auto-pull-request-merge@v1
-      with:
-        repository: rajneesh111/pr-test-2
-        token: ${{ secrets.ACCESS_KEY }}
-        intervalSeconds: 10
-        timeoutSeconds: 60
+      - name: send Merge as PR
+        uses: KeisukeYamashita/auto-pull-request-merge@v1
+        with:
+          repository: rajneesh111/pr-test-2
+          intervalSeconds: 10
+          timeoutSeconds: 30
 
