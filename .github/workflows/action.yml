@@ -16,4 +16,5 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ACCESS_KEY }}
-
+          branch: feature
+          base-branch: main
