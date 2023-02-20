@@ -9,6 +9,7 @@ jobs:
     - name: Merge
       uses: KeisukeYamashita/auto-pull-request-merge@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        strategy: merge
+        token: ${{ secrets.ACCESS_KEY }}
         intervalSeconds: 10
         timeoutSeconds: 30
