@@ -12,7 +12,7 @@ jobs:
       - name: send Merge as PR
         uses: KeisukeYamashita/auto-pull-request-merge@v1
         with:
-          repository: https://rajneesh111/pr-test-2/
+          repository: pr-test-2
           token: ${{ secrets.ACCESS_KEY }}
           intervalSeconds: 10
           timeoutSeconds: 60
