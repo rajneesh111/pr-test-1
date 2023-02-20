@@ -10,7 +10,9 @@ jobs:
     - name: Merge
       uses: KeisukeYamashita/auto-pull-request-merge@v1
       with:
+        
         token: ${{ secrets.ACCESS_KEY }}
+        labels: test
         intervalSeconds: 10
-        timeoutSeconds: 30
+        timeoutSeconds: 60
 
