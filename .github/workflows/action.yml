@@ -1,16 +1,15 @@
-name: Auto merge
-on: pull_request
+name: Auto-Merge
+on:
+  pull_request_target:
+    branches: ["main"]
+
 jobs:
-  merge:
+  enable-auto-merge:
     runs-on: ubuntu-latest
+
+    # Specifically check that dependabot (or another trusted party) created this pull-request, and that it has been labelled correctly.
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
-      - name: Create Comment
-        uses: KeisukeYamashita/create-comment@v1
-     
-        with:
-          intervalSeconds: 1
-          timeoutSeconds: 60
-          labels: test
-          labelsStrategy: atLeastOne
-          ignoreLabels: ignore
-          comment: ${{ steps.merge.outputs.merged }}
+    - uses: alexwilson/enable-github-automerge-action@main
+      with:
+        github-token: "${{ secrets.ACCESS_TOKEN }}"
