@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: send Merge as PR
-        uses: KeisukeYamashita/auto-pull-request-merge@v1
-        with:
-          repository: rajneesh111/pr-test-2
-          intervalSeconds: 10
-          timeoutSeconds: 30
+        run: |
+          echo: $(git rev-parse --short "$GITHUB_SHA")
 
