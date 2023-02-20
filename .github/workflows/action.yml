@@ -16,6 +16,4 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ACCESS_KEY }}
-          committer: rajneesh111 <rajneesh.singh@laitkor.com>
-          branch: feature 
-          push-to-fork: rajneesh111/pr-test-2
+
