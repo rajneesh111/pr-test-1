@@ -17,4 +17,4 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_KEY }}
           branch: feature
-          base-branch: main
+          base: main
