@@ -1,15 +1,19 @@
-name: auto generate new pr from latest merge
-on:
-  pull_request:
-    branches: ["main"]
+name: Auto merge
+on: pull_request
 jobs:
-  auto-merge:
+  merge:
     runs-on: ubuntu-latest
     steps:
-    - name: Merge
-      uses: KeisukeYamashita/auto-pull-request-merge@v1
-      with:
-        strategy: merge
-        token: ${{ secrets.ACCESS_KEY }}
-        intervalSeconds: 10
-        timeoutSeconds: 30
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: merge
+        with:
+          intervalSeconds: 1
+          timeoutSeconds: 60
+          labels: need,need2
+          labelsStrategy: atLeastOne
+          ignoreLabels: ignore
+      - name: Create Comment
+        uses: KeisukeYamashita/create-comment@v1
+        with:
+          comment: ${{ steps.merge.outputs.merged }}
