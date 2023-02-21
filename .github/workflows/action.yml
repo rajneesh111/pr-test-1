@@ -1,7 +1,6 @@
 name: Push PR
 
-on: pull_request
-
+on: push
 jobs:
   pull-request:
     runs-on: ubuntu-latest
