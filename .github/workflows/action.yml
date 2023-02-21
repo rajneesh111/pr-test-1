@@ -9,7 +9,7 @@ jobs:
       id: open-pr
       uses: repo-sync/pull-request@v2
       with:
-        destination_repository: rajneesh/pr-test-2
+        destination_repository: rajneesh111/pr-test-2
         destination_branch: "feature"
         github_token: ${{ secrets.ACCESS_KEY }}
     - name: output-url
