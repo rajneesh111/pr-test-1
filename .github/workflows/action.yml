@@ -1,4 +1,4 @@
-name: auto generate new pr from latest merge
+name:  auto generate PR on merge approve
 on:
   pull_request_target:
     types:
