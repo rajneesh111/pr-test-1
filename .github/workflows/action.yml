@@ -1,22 +1,22 @@
-name: Push PR
-
-on: push
+on:
+  pull_request:
 jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Create pull request
-      uses: paygoc6/action-pull-request-another-repo@v1.0.1
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.ACCESS_KEY }}
+    - uses: actions/checkout@v3
+    - name: pull-request
+      id: open-pr
+      uses: repo-sync/pull-request@v2
       with:
-        source_folder: 'test'
-        destination_repo: 'rajneesh111/pr-test-2'
-        destination_folder: 'test'
-        destination_base_branch: 'main'
-        destination_head_branch: 'feature'
-        user_email: 'rajneeshsingh@laitkor.com'
-        user_name: 'rajneeesh111'
+        destination_repository: rajneesh/pr-test-2
+        destination_branch: "feature"
+        github_token: ${{ secrets.ACCESS_KEY }}
+    - name: output-url
+      run: echo ${{steps.open-pr.outputs.pr_url}}
+    - name: output-number
+      run: echo ${{steps.open-pr.outputs.pr_number}}
+    - name: output-created
+      run: echo ${{steps.open-pr.outputs.pr_created}}
+    - name: output-has-changed-files
+      run: echo ${{steps.open-pr.outputs.has_changed_files}}
