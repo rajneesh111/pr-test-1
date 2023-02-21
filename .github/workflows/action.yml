@@ -13,9 +13,9 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.ACCESS_KEY }}
       with:
-        source_folder: 'pr-test-1'
+        source_folder: 'test'
         destination_repo: 'rajneesh111/pr-test-2'
-        destination_folder: 'pr-test-2'
+        destination_folder: 'test'
         destination_base_branch: 'main'
         destination_head_branch: 'feature'
         user_email: 'rajneeshsingh@laitkor.com'
