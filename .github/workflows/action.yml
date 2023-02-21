@@ -1,20 +1,21 @@
-name:  auto generate PR on merge approve
-on:
-  pull_request_target:
-    types:
-      - closed
+name: Push PR
+
+on: pull_request
+
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.ACCESS_KEY }}
-          repository: rajneesh111/pr-test-2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.ACCESS_KEY }}
-          branch: main
-          base: feature
+    - name: Create pull request
+      uses: paygoc6/action-pull-request-another-repo@v1.0.1
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.ACCESS_KEY }}
+      with:
+        destination_repo: 'rajneesh111/pr-test-2'
+        destination_base_branch: 'main'
+        destination_head_branch: 'feature'
+        user_email: 'rajneeshsingh@laitkor.com'
+        user_name: 'rajneeesh111'
