@@ -28,11 +28,11 @@ jobs:
 
     - name: Checkout PR branch
       run: |
-        git checkout -b pr-branch origin/${{ github.event.pull_request.head.ref }}
+        git checkout -b feature origin/${{ github.event.pull_request.head.ref }}
 
     - name: Push changes to destination repository
       run: |
-        git push --force-with-lease origin pr-branch
+        git push --force-with-lease origin feature
 
     - name: Create pull request on destination repository
       uses: peter-evans/create-pull-request@v3.10.0
