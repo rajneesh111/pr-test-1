@@ -28,7 +28,7 @@ jobs:
 
     - name: Checkout PR branch
       run: |
-        git checkout -b feature origin/${{ github.event.pull_request.head.ref }}
+        git checkout -b feature 
 
     - name: Push changes to destination repository
       run: |
