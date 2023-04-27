@@ -1,8 +1,8 @@
 name: Copy PR to another repository
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
+    branches: main
 
 jobs:
   copy_pr:
